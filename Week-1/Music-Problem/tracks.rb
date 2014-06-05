@@ -1,34 +1,30 @@
 require "csv"
-# require "./music_query.rb"
+require "pp"
 
 class Tracks
-	def initialize(filename)
-		@filename = filename
+	def initialize(file_name)
+		@file_name = file_name
+		@music = {}
+
 	end
 
-	def lookup#(user_query)
-		songs =[]
-
-		CSV.foreach(@filename, headers:true) do |row|
-			songs << MusicQuery.new(row["Artist"], row["Name"]) 
+	def read
+		CSV.foreach(@file_name, :headers => true) do |row|
+			song_name = row ["Name"]
+			artist_name = row ["Artist"]
+			set_new_artist
+			@music[artist_name] << song_name
 		end
-		songs
+		@music
 	end
 
+	def set_new_artist
+		if !@music.key?(artist_name)
+			@music[artist_name] = []
+		end
+	end
 end
 
-# class MusicQuery
-# 	def initialize
-
-# 	end
-
-# 	def query
-# 		print "Whose songs do you want listed? > "
-# 		#  user_query = gets.chomp
-# 		# lookup(user_query)
-
-# 	end	
-# end
-
-# tracks = Tracks.new("music.csv")
-# music_query = MusicQuery.new(tracks.lookup)
+tracks = Tracks.new("music.csv")
+result = tracks.read
+pp result

@@ -1,23 +1,20 @@
-#Query artist
-#### Load the CSV document
-#### Lookup the artist 
-#print all songs by artist
-
-require "./tracks.rb"
-
 
 class MusicQuery
-	def initialize
 
+	def initialize
+		@music_database = {}
 	end
 
-	def query
-		print "Whose songs do you want listed? > "
-		user_query = gets.chomp
-		# lookup(user_query)
+	def play
+		loop do
+			print "Whose songs do you want listed? > "
+			artist_name = prompt_artist_name
+			if !@music_database.key?(artist_name)
+				puts "No artist with that name!"
+			else
+				puts @music_database[artist_name]
+			end
+		end
+	end
 
-	end	
 end
-
-tracks = Tracks.new("music.csv")
-music_query = MusicQuery.new(tracks.lookup)
