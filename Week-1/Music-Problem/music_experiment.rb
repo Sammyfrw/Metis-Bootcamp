@@ -1,31 +1,39 @@
 require "csv"
 
-class MusicExperiment
+class JukeBox
 	def initialize
-		@songs = {}
+		@music_database = {}
 	end
 
-	def build_database
-		CSV.foreach("music.csv", headers: true) do |row|
-			if !@songs.key?(row["Artist"])
-				@songs[row["Artist"]] = []
-			end
-			@songs[row["Artist"]] << row["Name"]
-		end
-	end
-
-	def query
+	def play
 		print "Whose songs do you want listed? > "
-		user_query = gets.chomp
-		if !@songs.key?(user_query)
+		artist_name = prompt_artist_name
+		if !@music_database.key?(artist_name)
 			puts "No artist with that name!"
 		else
-			puts @songs
+			puts @music_database[artist_name]
 		end
 
+
+	def build_jukebox
+		CSV.foreach("music.csv", headers: true) do |row|
+			if !@music_database.key?(row["Artist"])
+				@music_database[row["Artist"]] = []
+			end
+			@music_database[row["Artist"]] << row["Name"]
+		end
+	end
+
+	
 	end	
 end
 
-music_experiment = MusicExperiment.new
-music_experiment.build_database
+class MusicQuery
+
+
+def query
+
+
+music_experiment = JukeBox.new
+music_experiment.build_jukebox
 music_experiment.query
