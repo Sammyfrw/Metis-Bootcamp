@@ -1,0 +1,1 @@
+SELECT name FROM images WHERE description IS NOT NULL

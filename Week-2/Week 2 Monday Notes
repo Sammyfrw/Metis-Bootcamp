@@ -1,0 +1,3 @@
+Calling to_a on a File type will turn it into an array of lines.
+
+Using .map on an array (it has a do/end with args), will output the return value of what it is iterating.

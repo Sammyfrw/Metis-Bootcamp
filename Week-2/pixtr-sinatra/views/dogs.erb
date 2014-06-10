@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!---index for gallery page-->
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>The Dog Gallery</title>
+		<link rel="stylesheet" href="application.css">
+	</head>
+
+	<body>
+		<%= "Woooosh!" %>
+		
+		<h1>The Dog Gallery</h1>
+		<p>This is where the Loupain go. Show off your fangs, hounds!</p>
+		<%= dog_images.each do |dog_image| %>
+		  <img src="img/<%=cat_image%>" alt= "<%= cat_image%>">
+		<% end %>
+
+		<!-- <img src="shibe.png" alt= "This has no picture!"> -->
+	</body>
+</html>
+

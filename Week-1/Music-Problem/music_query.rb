@@ -29,7 +29,7 @@ class MusicQuery
 		puts "Enter an artist name. To exit, enter a blank query."
 		print "Whose songs do you want listed? > "
 	end
-
+	
 	def pretty_print(artist_name)
 		puts "*" * (artist_name.length)
 		puts artist_name
