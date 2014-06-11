@@ -14,8 +14,11 @@
 		<div id="galleries">
 			<h2>Galleries</h2>
 			<ul>
-				<li><a href="cats.html"> Cat Gallery </a></li>
-				<li><a href="dogs.html"> Dog Gallery </a></li>
+				<% @galleries.each do |gallery| %>
+				<li> <a href="<%= gallery.name.downcase %>"><%= gallery.name %></a> </li>
+				<% end %>
+				<!-- <li><a href="cats.html"> Cat Gallery </a></li>
+				# <li><a href="dogs.html"> Dog Gallery </a></li> -->
 			</ul>
 		</div>
 	</body>
