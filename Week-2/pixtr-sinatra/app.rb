@@ -12,21 +12,27 @@ ActiveRecord::Base.establish_connection(
   class Gallery < ActiveRecord::Base
   end
 
+  class Image < ActiveRecord::Base
+  end
+
 get "/" do
   @galleries = Gallery.all
   erb :index
 end
 
 
-get "/:gallery_name" do
-cat_images_in_app_rb = ["colonel_meow.jpg", "grumpy_cat.png"]
-dog_images_in_app_rb = ["shibe.png"]
-  gallery_name = params[:gallery_name] 
-  erb(gallery_name.to_sym, {
-  	locals: {
-  	cat_images: cat_images_in_app_rb, 
-  	dog_images: dog_images_in_app_rb
-  }
-  })
+get "/gallery/:id" do
+  @gallery = Gallery.find(params[:id])
+  @images = Image.where(gallery_id: @gallery.id)
+  erb :show
 end
 
+# cat_images_in_app_rb = ["colonel_meow.jpg", "grumpy_cat.png"]
+# dog_images_in_app_rb = ["shibe.png"]
+#   gallery_name = params[:gallery_name] 
+#   erb(gallery_name.to_sym, {
+#   	locals: {
+#   	cat_images: cat_images_in_app_rb, 
+#   	dog_images: dog_images_in_app_rb
+#   }
+#   })

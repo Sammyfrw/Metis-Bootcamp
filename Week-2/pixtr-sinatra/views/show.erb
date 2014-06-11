@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!---index for gallery page-->
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>The <%=@gallery.name%> Gallery</title>
+		<link rel="stylesheet" href="appliimageion.css">
+	</head>
+
+
+	<body>
+		<h1>The image Gallery</h1>
+		<%= "Woooosh!" %>
+		<p> The gallery of <%=@image%>s. Show off your super-dee-duper <%=@gallery.name%> powers here!</p>
+		<% @images.each do |image| %>
+ 		 <img src="<%=image.url%>" alt= "<%=image.name%>">
+		<% end %>
+
+<!-- 			<img src="Zack.jpg" alt= "No pic!">
+			<img src="Redclaw.jpg" alt = "No pic!">
+			<img src="kitty.jpg" alt = "No pic!">
+			<img src="colonel_meow.jpg" alt = "No pic!"> -->
+
+	</body>
+
+</html>

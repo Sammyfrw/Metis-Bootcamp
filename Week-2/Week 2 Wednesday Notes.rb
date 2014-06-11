@@ -61,6 +61,23 @@ ActiveRecord::Base.establish_connection(
 
 # Next, the class Gallery inheriting ActiveRecord::Base is going to refer to
 # the item Gallery in the database we established a connection to. It will be
-# used in reference later on when we require it.
+# used in reference later on when we require it. It is CRUCIAL that the class
+# name is singular, and that it is the singular form of the table name in the
+# database (which HAS to be plural)
 
+get "/" do
+  @galleries = Gallery.all
+  erb :index
+end
 
+# A similar sight from yesterday's notes, the local: and list of self defined
+# local variables no longer exist - instead, an instance variable is used. It
+# takes in Gallery.all (which is akin to SELECT * from gallery) which returns
+# a large array of all items in the gallery table. 
+
+# Then, erb command is used on :index (basically, the .erb file you want to
+# call erb on, as a symbol). After which, you can use @galleries in the ruby
+# code for index.erb itself. It will return a string of text from index.erb,
+# that will be passed into the browser when requested (With url domainname/)
+# before being processed. Once the browser processes it, it returns it to the
+# user.

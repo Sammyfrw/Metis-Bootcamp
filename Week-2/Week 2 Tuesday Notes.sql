@@ -188,9 +188,10 @@ end
 
 
 -- params is a huge hash containing data provided by the user. Any information
--- user puts in, will be placed into params. In this case, :gallery_name is
--- the key. The colon in "/:gallery_name" is necessary, because it says
--- anything after the slash is what get is looking for.
+-- user puts in, will be placed into params. User's input is usually taken in
+-- by the URL or a form. In this case, :gallery_name is the key. The colon in
+-- "/:gallery_name" is necessary, because it says anything after the slash is
+-- what get is looking for.
 
 -- In the gallery.html file, we have:
 
@@ -218,4 +219,4 @@ end
 -- we will refer to in the HTML file, producing the values of those keys.
 
 -- So, with that example above, we can use cat_images in our ERB'd html file's
--- lines, to obtain the cat image filenames stored in cat_images_in_app_rb
+-- lines, to obtain the cat image filenames stored in cat_images_in_app_rb.
