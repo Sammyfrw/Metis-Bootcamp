@@ -11,6 +11,7 @@ ActiveRecord::Base.establish_connection(
   )
 
   class Gallery < ActiveRecord::Base
+    has_many :images
   end
 
   class Image < ActiveRecord::Base
@@ -24,7 +25,7 @@ end
 
 get "/gallery/:id" do
   @gallery = Gallery.find(params[:id])
-  @images = Image.where(gallery_id: @gallery.id)
+  @images = @gallery.images
   erb :show
 end
 
