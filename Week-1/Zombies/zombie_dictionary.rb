@@ -15,16 +15,8 @@ class ZombieDictionary
 			#get number of scenarios
 			@input_file = file.readlines
 			set_scenario_number
-			until @current_scenario == @scenario
-				if @word_number == 0 
-					set_number_words
-				elsif @garble_number == 0
-					set_number_garble
-				else
-					next_scenario
-				end
-				puts "Currentline is now #{@currentline}"
-			end
+			scenario_loop
+			puts "Currentline is now #{@currentline}"
 		end
 	end
 
@@ -38,24 +30,14 @@ class ZombieDictionary
 
 	end
 
-	def next_scenario
-		@current_scenario += 1
-		@word_number = 0
-		@garble_number = 0
-		translate_garble
-		@dict_words = []
-		@zombie_garble = []
-		print "NEW SCENARIO!"
-		gets.chomp
-	end
-
-	def translate_garble
-		@dict_words.each do |word|
-			@zombie_garble.each do |garble|
-				letters = word.split(//)	
-				if garble.any?{|garble| letters
-					puts	"Did you mean: #{word}?"
-				end
+	def scenario_loop(file)
+		until @current_scenario == @scenario
+			if @word_number == 0 
+				set_number_words
+			elsif @garble_number == 0
+				set_number_garble
+			else
+				next_scenario
 			end
 		end
 	end
@@ -93,6 +75,29 @@ class ZombieDictionary
 		@zombie_garble << @line_content
 		@currentline += 1
 	end	
+
+
+	def next_scenario
+		@current_scenario += 1
+		@word_number = 0
+		@garble_number = 0
+		translate_garble
+		@dict_words = []
+		@zombie_garble = []
+		print "NEW SCENARIO!"
+		gets.chomp
+	end
+
+	def translate_garble
+		@dict_words.each do |word|
+			@zombie_garble.each do |garble|
+				letters = word.split(//)	
+				if garble.any?{|garble| letters
+					puts	"Did you mean: #{word}?"
+				end
+			end
+		end
+	end
 
 
 end

@@ -15,7 +15,7 @@
 			<h2>Galleries</h2>
 			<ul>
 				<% @galleries.each do |gallery| %>
-				<li> <a href="<%= gallery.name.downcase %>"><%= gallery.name %></a> </li>
+				<li> <a href="/gallery/<%= gallery.id %>"><%= gallery.name %></a> </li>
 				<% end %>
 				<!-- <li><a href="cats.html"> Cat Gallery </a></li>
 				# <li><a href="dogs.html"> Dog Gallery </a></li> -->
