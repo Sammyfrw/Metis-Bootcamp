@@ -10,9 +10,10 @@
 
 
 	<body>
-		<h1>The image Gallery</h1>
+		<h1>The <%=@gallery.name%> Gallery</h1>
+		<h2> <a href= "/galleries/<%=@gallery.id%>/edit">Edit Gallery Name</a></h2>
 		<%= "Woooosh!" %>
-		<p> The gallery of <%=@image%>s. Show off your super-dee-duper <%=@gallery.name%> powers here!</p>
+		<p> The gallery of <%=@gallery.name%>s. Show off your super-dee-duper <%=@gallery.name%> powers here!</p>
 		<% @images.each do |image| %>
  		 <img src="<%=image.url%>" alt= "<%=image.name%>">
 		<% end %>

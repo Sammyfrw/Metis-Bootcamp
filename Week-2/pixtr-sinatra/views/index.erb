@@ -12,10 +12,11 @@
 		<h1> A photo gallery application </h1>
 		<div id="introduction">Below are a list of galleries that contain images of animals.</div>
 		<div id="galleries">
+			<p><a href= "/galleries/new">New Gallery</a></p>
 			<h2>Galleries</h2>
 			<ul>
 				<% @galleries.each do |gallery| %>
-				<li> <a href="/gallery/<%= gallery.id %>"><%= gallery.name %></a> </li>
+				<li> <a href="/galleries/<%= gallery.id %>"><%= gallery.name %></a> </li>
 				<% end %>
 				<!-- <li><a href="cats.html"> Cat Gallery </a></li>
 				# <li><a href="dogs.html"> Dog Gallery </a></li> -->

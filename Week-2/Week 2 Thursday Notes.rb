@@ -49,3 +49,21 @@ post "/galleries" do
   redirect "/galleries/#{gallery.id}"
 end
 
+# Forms will only ever receive POSTS or GET. So to delete something, we need to fake it.
+
+<input type="hidden" name ="_method" value ="PATCH">
+
+# This tells sinatra that even if we're sending a post, we're actually sending
+# a patch. If sinatra finds a method, it will use this
+# method over the action described in form method instead.
+
+
+# Requests have a VERB and a PATH. (e.g. GET /galleries/3/edit) 
+# Responses will be the response code and HTML (200 + HTML) 
+# The HTML can be a new page altogether.(e.g. an edit page.)
+# Change the name of gallery to burgers, click submit - a NEW request!). 
+# This new request on clicking submit is a POST (POST /galleries/3)
+
+# The POST will have a body in the html; it has a key _method and a value
+# PATCH. Additionally, gallery[name] key will have a new value, burgers.
+A
