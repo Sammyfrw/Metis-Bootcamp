@@ -63,7 +63,7 @@ ActiveRecord::Base.establish_connection(
 # the item Gallery in the database we established a connection to. It will be
 # used in reference later on when we require it. It is CRUCIAL that the class
 # name is singular, and that it is the singular form of the table name in the
-# database (which HAS to be plural)
+# database (which HAS to be plural) 
 
 get "/" do
   @galleries = Gallery.all
@@ -81,3 +81,26 @@ end
 # that will be passed into the browser when requested (With url domainname/)
 # before being processed. Once the browser processes it, it returns it to the
 # user.
+
+ class Gallery < ActiveRecord::Base
+  has_many :images
+  end
+
+class Image < ActiveRecord::Base
+  belongs_to :images
+end
+
+# As the galleries table has a one to many relation with images, has_many
+# :images refers to the foreign key of images and adds new methods on Gallery
+# objects (it is CRUCIAL that naming of the foreign keys are written
+# properly.) Likewise, belongs_to is called on the many to one relationship
+# table. This adds new methods for either to be used and referred to, allowing
+# access to the following commands (you do not need to call both on the
+# relationship, only the one you need):
+
+@gallery = Gallery.new
+@gallery.images
+
+@image = Images.new
+@image.gallery
+

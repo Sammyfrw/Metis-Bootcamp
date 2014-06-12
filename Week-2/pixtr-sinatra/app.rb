@@ -22,12 +22,21 @@ get "/" do
   erb :index
 end
 
+get "/galleries/new" do
+  erb :new_gallery
+end
 
-get "/gallery/:id" do
+get "/galleries/:id" do
   @gallery = Gallery.find(params[:id])
   @images = @gallery.images
   erb :show
 end
+
+post "/galleries" do
+gallery = Gallery.create(params[:gallery])
+redirect "/galleries/#{gallery.id}"
+end
+
 
 # cat_images_in_app_rb = ["colonel_meow.jpg", "grumpy_cat.png"]
 # dog_images_in_app_rb = ["shibe.png"]
