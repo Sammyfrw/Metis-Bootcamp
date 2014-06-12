@@ -66,4 +66,46 @@ end
 
 # The POST will have a body in the html; it has a key _method and a value
 # PATCH. Additionally, gallery[name] key will have a new value, burgers.
-A
+
+patch "/galleries/:id" do
+  gallery = Gallery.find(params[:id])
+  gallery.update(params[:gallery])
+  redirect "galleries/#{gallery.id}"
+end
+
+# Remember; in this case (params[:gallery]) is referring to this part of the
+# HTML file:
+
+<input id="gallery_name" type ="text" name="gallery[name]" value="<%=@gallery.name%>">
+
+# .update needs a hash - params[:gallery] is a hash. params is talking about
+# .the 'name' field, and :gallery is the key of that parameter. It has values,
+# .which is another hash containing the fields in the table (column; row). In
+# .this instance, we refer to the key name, with value being defined in the
+# .user submission box.
+
+# To delete a gallery, we can use .destroy. As links only work on GET, we have
+# to use a baby-form, where it has no input form for user text and is only a
+# button:
+
+    <form method ="POST" action ="/galleries/<%=@gallery.id%>/">
+        <input type = "Hidden" name = "_method" value = "DELETE">
+        <input type = "submit" value = "Delete this gallery">
+      </form>
+
+      And this will run DELETE on /galleries/:id:
+
+  delete "/galleries/:id" do
+   gallery = Gallery.find(params[:id])
+   gallery.destroy
+   redirect "galleries/"
+end
+
+From the earlier example:
+
+class Gallery < ActiveRecord::Base
+  has_many :images, dependant: :destroy
+end
+
+# dependant: destroy on a has_many causes the images within the gallery to be
+# destroyed when you destroy a gallery.

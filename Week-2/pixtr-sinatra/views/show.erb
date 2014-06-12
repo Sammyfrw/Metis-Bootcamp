@@ -12,6 +12,11 @@
 	<body>
 		<h1>The <%=@gallery.name%> Gallery</h1>
 		<h2> <a href= "/galleries/<%=@gallery.id%>/edit">Edit Gallery Name</a></h2>
+			<form method ="POST" action ="/galleries/<%=@gallery.id%>">
+				<input type = "Hidden" name = "_method" value = "DELETE">
+				<input type = "submit" value = "Delete this gallery">
+			</form>
+			<h2> <a href = "/galleries/<%=@gallery.id%>/images/new">Add image to gallery </a> </h2>
 		<%= "Woooosh!" %>
 		<p> The gallery of <%=@gallery.name%>s. Show off your super-dee-duper <%=@gallery.name%> powers here!</p>
 		<% @images.each do |image| %>

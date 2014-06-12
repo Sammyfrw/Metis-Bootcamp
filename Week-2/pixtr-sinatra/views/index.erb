@@ -15,7 +15,7 @@
 			<p><a href= "/galleries/new">New Gallery</a></p>
 			<h2>Galleries</h2>
 			<ul>
-				<% @galleries.each do |gallery| %>
+				<% @galleries.sort_by {|gallery| gallery.id}.each do |gallery| %>
 				<li> <a href="/galleries/<%= gallery.id %>"><%= gallery.name %></a> </li>
 				<% end %>
 				<!-- <li><a href="cats.html"> Cat Gallery </a></li>

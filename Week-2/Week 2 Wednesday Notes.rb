@@ -87,7 +87,7 @@ end
   end
 
 class Image < ActiveRecord::Base
-  belongs_to :images
+  belongs_to :gallery
 end
 
 # As the galleries table has a one to many relation with images, has_many
@@ -100,7 +100,10 @@ end
 
 @gallery = Gallery.new
 @gallery.images
+#this is equal to the earlier Image.where(gallery_id: self.id). It knows what
+#it's looking for (gallery_id :self.id) due to convention and how the sinatra
+#dictionary works.
 
 @image = Images.new
 @image.gallery
-
+#this is equal to
