@@ -1,0 +1,29 @@
+<h1>Sam and Mike's Flashcard</h1>
+
+<!--- You should be able to:
+
+#     view a list of decks
+#     create a deck
+#     edit a deck
+#     view a deck
+#     create a card in a deck
+#     play a deck
+
+
+#frontpage
+  # ---- Show decks
+  # --------view cards in deck
+  # --------edit cards in deck
+  # ---- Add decks
+  # --------add cards to new deck
+  # ---- Play deck
+  # --------take random card from deck
+  # --------ask QUESTION
+  # --------show answer right/wrong -->
+
+  <h2> Select an option: </h2>
+  <p>Select a deck to view:</p>
+  <ul>
+  <% @decks.sort_by {|deck| deck.id} .each do |deck| %>
+  <li> <a href="/decks/<%=deck.id%>"><%= deck.deck_name%></a></li>
+    <%end%>

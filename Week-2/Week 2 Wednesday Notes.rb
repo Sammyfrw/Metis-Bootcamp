@@ -31,11 +31,11 @@
 # essentially functions on objects. Ruby on rails will allow us to do this
 # very easily.
 
-# ActiveRecord is an gem ORM that can allow users to interface with the
+# ActiveRecord is a gem ORM that can allow users to interface with the
 # database and inherit its contents, instantiating records from it. It allows
-# us to change the records from code itself.
+# us to change the records from code itself. It links Sinatra with Postgres.
 
-# pg is an intermediary gem that links postgresql with psql. Both pg and
+# pg is an intermediary gem that links postgresql with ActiveRecord. Both pg and
 # ActiveRecord are required in a ruby program to allow access to postgresql
 # databases. 
 

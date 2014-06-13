@@ -136,7 +136,8 @@ ORDER BY COUNT(images.id) DESC -- ORDER BY clauses order the results by the argu
 -- environment; adding new methods and with their own parameters, arguments, etc.
 -- in ruby.
 
-When running sinatra, you send data to the browser, instead of the screen - the block can handle what is on the screen. In the example hello.rb:
+-- When running sinatra, you send data to the browser, instead of the screen -
+-- the block can handle what is on the screen. In the example hello.rb:
 
 	get "/hello_with_header" do
 		#status code

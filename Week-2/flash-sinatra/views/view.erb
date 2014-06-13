@@ -1,0 +1,18 @@
+
+<H2> Viewing <%=@decks.deck_name%>
+  <ul>
+    <% @cards.sort_by{|card| card.deck_id}.each do |card| %>
+     <li> <%=card.question%> ====== <%=card.answer%></li>
+        <a href = "/decks/<%=card.deck_id%>">Edit card</a>
+        <form method ="POST" action = "/decks/<%=card.deck_id%>/<%=card.id%>">
+          <input type = "Hidden" name = "_method" value = "DELETE">
+          <input type = "submit" value = "Delete card">
+    <% end %>
+
+
+</ul>
+<p> <a href = "/decks/<%=@decks.id%>/new_card">New card</a>
+  <form method = "POST" action = "/decks/<%=@decks.id%>">
+    <input type = "Hidden" name = "_method" value = "DELETE">
+    <input type = "submit" value = "Delete deck">
+  </p>
