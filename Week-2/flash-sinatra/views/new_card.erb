@@ -1,0 +1,9 @@
+<h2>New Card</h2>
+<form method="POST" action="/decks/<%=@decks.id%>/new_card">
+  <label for="card_question">Question: </label>
+  <input id="card_question" type ="text" name="card[question]">
+  <label for="card_answer">Answer: </label>
+  <input id="card_answer" type = "text" name="card[answer]">
+  <input type ="submit" value="Create card">
+</form>
+

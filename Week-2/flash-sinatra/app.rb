@@ -59,12 +59,28 @@ require "sinatra/reloader"
     erb :view
   end
 
+  get "/decks/:deck_id/new_card" do
+    @decks = Deck.find(params[:deck_id])
+    erb :new_card
+  end
+
+  post "/decks/:deck_id/new_card" do
+    question = params[:card]
+    # answer = params[:card]
+    deck_id = {deck_id: params[:deck_id]}
+    # row_hash = question.merge(answer)
+    row_hash = question.merge(deck_id)
+    # raise row_hash.inspect
+    Card.create(row_hash)
+    redirect "/decks/#{params[:deck_id]}"
+  end
+
   delete "/decks/:deck_id/:card_id" do
-    card = card.find(params[:card_id])
+    card = Card.find(params[:card_id])
     card.destroy
   end
 
-  
+
 
 
 
