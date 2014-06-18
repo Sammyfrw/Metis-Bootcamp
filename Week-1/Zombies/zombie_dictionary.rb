@@ -15,7 +15,7 @@ class ZombieDictionary
 			#get number of scenarios
 			@input_file = file.readlines
 			set_scenario_number
-			scenario_loop
+			scenario_loop(file)
 			puts "Currentline is now #{@currentline}"
 		end
 	end
@@ -89,12 +89,18 @@ class ZombieDictionary
 	end
 
 	def translate_garble
-		@dict_words.each do |word|
-			@zombie_garble.each do |garble|
-				letters = word.split(//)	
-				if garble.any?{|garble| letters
-					puts	"Did you mean: #{word}?"
-				end
+		@zombie_garble.each do |garble|
+			@dict_words.each do |word|
+				letters = word.split(//)
+				if garble.include?(letters)
+				# word.each_char do |letter| 
+					# if garble.include?(letter)
+						puts	"Did you mean: #{word.chomp}?"
+						# break
+					else
+						puts "No matches found."
+					end
+				# end
 			end
 		end
 	end

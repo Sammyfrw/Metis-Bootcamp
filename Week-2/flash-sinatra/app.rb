@@ -64,6 +64,17 @@ require "sinatra/reloader"
     erb :new_card
   end
 
+  get "/decks/:deck_id/edit_card" do
+    @decks = Deck.find(params[:deck_id])
+    erb :edit_card
+  end
+
+  patch "/decks/:deck_id/" do
+    card = Card.find(params[:deck_id])
+    card.update(params[:card])
+    redirect "decks/#{params[deck.id]}"
+  end
+
   post "/decks/:deck_id/new_card" do
     question = params[:card]
     # answer = params[:card]
@@ -79,8 +90,3 @@ require "sinatra/reloader"
     card = Card.find(params[:card_id])
     card.destroy
   end
-
-
-
-
-
