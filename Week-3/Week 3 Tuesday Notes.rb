@@ -165,4 +165,16 @@ def create
 
 # In class, it is preferred that we use our objects, so we use the path names
 # instead of directly referring to the path. Such as gallery, image, root_path
-# instead of /galleries, /galleries/:id/images, or /. Never hardcore the path!
+# instead of /galleries, /galleries/:id/images, or /. Never hardcode the path!
+
+# It's best to use a format:
+
+link_to "Galleries", [:new, @gallery, :image]
+
+# For /galleries/:gallery_id/images , image#create
+
+# For the line. We use the instance variable for gallery because we need to
+# reference a particular gallery ID number (which we got earlier from @gallery
+# = Gallery.find(params[:id])).
+
+
