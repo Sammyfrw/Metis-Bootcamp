@@ -1,0 +1,102 @@
+# In Vim, if directory is green it's in git mode, but if you press escape, it's
+# in vim mode.
+
+# We can make a new branch on GitHub with git checkout -b 'rw-comments'
+# Checkout changes what branch git is set up with; while the -b argument
+# creates a new branch.
+
+# We index searches - limiting the scope but for the sake of security; it's to
+# allow users to only be able to see what they should have access to. In
+# pixtr, we're finding the right gallery through the current user, and the
+# subsequent images within that gallery. While non-users can see the gallery,
+# only the user id associated with that gallery should have access to the path
+# actions.
+
+# We can use:
+
+current_user #Monban method to refer to signed in user.
+current_user.galleries #.galleries due to has_many on user model.
+gallery.images #.images due to has has_many on gallery model.
+
+# From the action, the app is able to find the URL. In create or update steps,
+# if we want to find the gallery_id, it needs to have the URL. We obtain the
+# path/URL in the form that'll come from the previous steps (New and edit).
+
+So instead of:
+
+@gallery = current_user.galleries.find(params[:gallery_id])
+@image = @gallery.images.find(params[:id])
+
+# In the edit and update steps, we don't actually need to know what gallery an
+# image belongs to. This is because once it is created, we don't need to
+# specifically need to know, whereas in new and create, we need to assign a
+# foreign key for the new image to link it to the gallery.
+
+# Therefore, we do not need the first line to find the gallery in the edit and
+# update methods. Thus:
+
+@image = current_user.images(params[:id])
+
+# Is what we can use, after we edit the User.rb model:
+
+class User < ActiveRecord::Base
+  has_many :galleries
+  # has_many :images ### WON'T WORK
+  has_many :images through: :galleries # This is what we need! 
+  # Do note that has_many :galleries is necessary for this to work, as well.
+  validates :email, presence: true, uniqueness: true
+  validates :password_digest, presence: true
+end
+
+# We haven't added any new loops or hoops, but this allows ActiveRecord to
+# make a more complex query: the JOIN ON command!
+
+Thus:
+
+def edit
+  @image = current_user.images(params[:id])
+end
+
+def update
+  @image = current_user.images.find(params[:id])
+
+  if @image.update(image_params)
+    redirect_to @image.gallery
+  else
+    render :edit
+  end
+end
+
+
+# And then in edit.html.erb, we'll need to make a few changes:
+
+<%= form_for @image do |form|%>
+<%= render 'form', form: form%>
+<%= form.submit "Update image"%>
+<% end %>
+
+> # which is different from what it used to be, which is nearly identical to
+> # the new.html.erb. The @gallery is no longer necessary, and we need to pass
+> # the form to the _form.html.erb as we do not want to pass along instance
+> # variables around.
+
+# We will need to make several changes. Specifically, in route, we don't need
+# to nest :edit and :update in the gallery, so we can make another resource
+# with only: on those two independently.
+
+resource :image, only: [:edit, :update]
+
+# All references to @gallery for images should no longer exist. Therefore:
+# image_params should no longer refer to the gallery_id. But that'll bother
+# the create step if we remove it, so we should remove references to look for
+# gallery_id when we create a new image. That means:
+
+@gallery = current_user.galleries.find(params[:gallery_id])
+@image = Image.new(image_params)
+
+# Step 2 can become:
+ 
+@image = @gallery.images.new(image_params)
+
+# So image_params can be run and a new image can be made without having to refer
+# to the gallery_id, as we already know from the previous step.

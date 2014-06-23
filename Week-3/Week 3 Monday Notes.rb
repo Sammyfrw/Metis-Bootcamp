@@ -95,7 +95,7 @@ end
 In controllers/gallery.rb:
 
 class Gallery < ActiveRecord::Base
-
+ 
 end
 
 # This'll spring up an error when we load up the page next that we don't have
