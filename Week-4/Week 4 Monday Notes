@@ -100,3 +100,62 @@ resource :image, only: [:edit, :update]
 
 # So image_params can be run and a new image can be made without having to refer
 # to the gallery_id, as we already know from the previous step.
+
+# When we write git commits we need to be imperative, written in present
+# tense.
+
+# To have a message board within our show-Image, we could design a method to
+# write a comment. In a comment, we will need: user_id, image_id, body and
+# timestamp. RIght now, we have 2 ways to link a Gallery to many Image(s):
+
+@gallery.images.new(n)
+
+# and
+
+Image.new(image_params)
+(step to merge new Image with gallery_id variable).
+
+# In both cases, we instantiate Image and make a new entry with its foreign
+# key. The 2nd is much bulkier as far as code goes, but with the first case,
+# there's no way to link the image with the comment's user_id and image_id at
+# the same time. We'll need to get both foreign keys and so we'll have to
+# merge the user_id into it.
+
+# To render a form that takes data from one controller to another, we have to
+# have 2 or more variables in the form definition in the html.erb: the
+# controllers data is being pulled from, and the last being passed into the
+# argument. We need an empty .New for the controllers where data is being
+# pulled from just to render the form when you enter the page with the form
+# (if there is no special page to fill the form in such as no edit page).
+
+# When creating a migration, you can use belongs_to as a data type for a
+# field. This automatically creates them as an index when you migrate.
+
+# When sorting a database or its presentation, SQL does it much faster
+# compared to ruby. So avoid using Ruby for database operations as much as
+# possible where it can be helped, especially batch processing.
+
+ @comments = @image.comments.order(created_at: :desc)
+
+ # .order is an ActiveRecord method, which arranges the database by the
+ # .created time. This works in the controller, but this is too logical for
+ # .the controller; this should go into a model instead. So in this case, we'd
+ # .define it in the comments model:
+
+
+ def self.recent
+    order(created_at: :desc).limit(2)
+  end
+
+  # This particular method lets us chain ActiveRecord methods when we call it
+  # on a comment object. This also allows us to reuse the method multiple
+  # times. So, if we need a sorted list of comments anywhere else, limited to
+  # the last 2, we can just call .recent on instantiated Comment objects. This
+  # is an ActiveRecord scope.
+  
+
+
+
+
+
+
