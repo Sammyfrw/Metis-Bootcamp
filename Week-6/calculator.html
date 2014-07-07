@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculator</title>
+		<meta charset="utf-8">
+		<script>
+			function calculate(){
+			var left = Number(document.getElementById("left").value);
+			var right = Number(document.getElementById("right").value);
+			var operator = document.getElementById("operator").value;
+			var result = document.getElementById("result");
+
+			debugger;
+
+			if (operator == "+") {
+				result.innerHTML = left + right;
+				}
+
+			if (operator == "-") {
+		result.innerHTML = left - right;
+		}
+
+			if (operator == "*") {
+		result.innerHTML = left * right;
+		}
+
+			if (operator == "/") {
+		result.innerHTML = left / right;
+		}
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<p>Calculator: First field is a number, second field is an operator, third field is a number.</p>
+		<form onsubmit="calculate(); return false;">
+			<input type="number" name="left" id="left">
+			<input type="text" name="operator" id="operator">
+			<input type="number" name="right" id="right">
+			<input type="submit" value="Calculate">
+
+		</form>
+		<p>Result: <span id="result"></p>
+	</body>
+</html>

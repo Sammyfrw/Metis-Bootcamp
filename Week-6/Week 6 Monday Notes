@@ -1,0 +1,85 @@
+JavaScript gives us the power to make dynamic things happen on the client side. Where Rails and the Rails stack processes and renders views server-side, but java-script tells the user to render on the client. Browsers all accept JavaScript. ECMAScripts organize JavaScript and standardoze it. It allows the user to interact with the Document Object Model, or the DOM. We can send smaller requests to the server via JavaScript instead of large chunks of whole views so it becomes more dynamic.
+
+By default, a submitted form in HTML with no direction will send a get request to itself with the params. It won't actually send anything; but the params itself need to be obtained through the URL - which is the name field in the input tags:
+
+	<input type="number" name="left">
+
+This will make a query-param get request with left having a value of what we inputted, with all params separated by ampersands:
+
+	/calculator.html?left=5&operator=*&right=3
+
+--
+HTML has a callback for forms, called onsubmit, which allows us to call javascript function. JavaScript functions can be passed around and will not run until called. Callbacks listen for events and will do an action when it happens. To prevent the forms from doing it's defalt behaviour for submit (as described abve - get request to itself), we can use return false in the onsubmit form.
+
+
+To begin writing javascript in the html file, we can use <script> tags in the header.
+
+To define a function in JavaScript, we define it with function:
+
+	function calculate() {
+		
+		}
+
+Where parameters are required, all functions must contain a param bracket (). All variables in the function need to be defined by 'var' then the name of the variable, and then to obtain params from the elements on the website we can call getElement on document. Specifically, we can getElementById (for example, our input type friend called left), thus:
+
+	var left = document.getElementById("left").value
+
+But we have to make sure that we defined "left" as an ID in the form itself:
+
+	<input type="number" name="left" id="left">
+
+In addition to being able to define and store param variables, we can also log them:
+	console.log(left)
+
+When we do:
+
+	if (operator == "+") {
+		console.log(left + right);
+	}
+
+We'll be adding the var left with var right. However, they might come out as strings:
+
+	log:
+	3 + 2
+	32
+
+Which doesn't work for us. We have to typecast them (basically, turn them into integers in this case). Type casting in JScript basically parses in a parameter to a constructor and makes a number object:
+
+	var left = Number(document.getElementById("left").value;
+
+And now we re-run the submit:
+
+	log:
+	3 + 2
+	5
+
+If we wanted to do live debugging, we can put in a debugger statement:
+
+	<script>
+			function calculate(){
+			var left = Number(document.getElementById("left").value);
+			var right = Number(document.getElementById("right").value);
+			var operator = document.getElementById("operator").value;
+
+			debugger;
+
+			}
+	</script>
+
+It will pause the script as it is running upon reaching the debugger. It allows us to debug whenever it makes a request for a parameter or call anything in that context. Very useful.
+
+Javascript will allow us to append or add dynamically to the view. So if we want to display the results of our calculation. To where we want our calculation result:
+
+	<p>Result: <span id="result"></p>
+
+We also have to make sure that we specify the variable and get the element by its ID:
+
+	var result = document.GetElementById("result");
+
+And then we also have to allow the variable to change the value of a particular element in our calculation itself by calling innerHTML on the variable:
+
+	if (operator == "+") {
+	result.innerHTML = left + right
+	}
+
+And that should do it!
