@@ -3,30 +3,6 @@
 	<head>
 		<title>Guessing Game</title>
 		<meta charset="utf-8">
-		<script>
-			var guesses = 0;
-			var winningNumber = Math.floor((Math.random() * 10) + 1);
-			console.log(winningNumber);
-			function guess(){
-				var guessesMade = document.getElementById("guessesMade");
-				var userGuess = Number(document.getElementById("userGuess").value);
-				
-				guessesMade.innerHTML = guesses + 1;
-				guesses ++;
-
-				if (userGuess === winningNumber) {
-					window.alert("Good job!");
-					winningNumber = Math.floor((Math.random() * 10) + 1);
-					}
-				else{
-					window.alert("Boo!");
-					}
-
-			}
-
-			
-
-		</script>
 	</head>
 
 	<body>
@@ -37,5 +13,7 @@
 
 		</form>
 		<p>Guesses made: <span id="guessesMade"> </span></p>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="./guessing_game.js"></script>
 	</body>
 </html>

@@ -83,3 +83,17 @@ And then we also have to allow the variable to change the value of a particular 
 	}
 
 And that should do it!
+
+======
+
+jQuery is a library for javascript. Basically jQuery contains a lot of code that we'll be able to use as bundles once we contain our code. We can access it by referring to it in our code:
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+To call jQuery in script, we use the dollarsign $:
+
+	$("#operator")
+
+This returns a jQuery object, with the id Operator. With it we can use any method in the jQuery API; we can add elements to the object, change the CSS, delete the element. Now, we don't require many of the JavaScript specific functions on html (such as innerhtml) as long as we make sure we refer correctly to the variables we'll be using as jQuery objects and use jQuery methods.
+
+JQuery is very powerful. It has many ways to listen in and do many functions and features according to the user. It's important to note however if we require JQuery scripts that html files read from top to bottom. Therefore, we need to specify if we want to make sure jQuery doesn't run any programs until the page is fully loaded (and therefore not run into issues where nothing will happen because files and scripts won't be loaded).

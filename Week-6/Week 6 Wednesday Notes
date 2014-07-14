@@ -1,0 +1,43 @@
+To select something specifically in JQuery/CSS:
+
+	$(input[type=checkbox]) 
+
+In this case, input is the element, and the items in the square brackets refer to the attributes.
+
+We can also refer to a specific class using a dot(classname):
+
+	$(.completed_checkbox)
+
+Assuming that there is an html element with a defined class:
+
+	<%=form_for task do |form| %>
+		<%form.check_box :completed, class: "completed_checkbox" %>
+
+
+By default, ajax can only handle post and get requests. When we need to patch, we'll need to be a bit more specific. When we call the method ajax (asynchronous javascript and xml):
+
+$ajax({
+	url: "something"
+	data: "something else"
+	type: "patch"
+	});
+
+The URL might be a bit difficult to obtain, but luckily when we interact with an element, we can pass in a variable as an argument to the function, which consists of the whole element. While this element might be targetting something else, we can traverse the code to obtain the parent element or child elements. For example, in a form with multiple checkboxes, we can obtain an event when we click on a checkbox, but the parent contains the URL we can use for ajax. 
+
+$(".completed_checkbox").click(function(event){
+	var formEl = $(event.target).parents("form")
+	$.ajax({
+		url: formEL.prop("action"),
+		data: formEL.serialize(),
+		type: "PATCH"
+		}).done(function(){
+			form.EL.parents("li").fadeOut();
+		});
+	});
+
+
+	Event is our element, and we call target to obtain its particular target. The .parents method will search for the first parent with the name closest to ("form") up the ladder. Assigning it to formEl, we can now query it for its action:
+
+	formEl.prop("action")
+
+	Will get our URL.
