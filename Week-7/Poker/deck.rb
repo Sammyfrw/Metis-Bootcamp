@@ -1,11 +1,13 @@
 class Deck
-    SUITS = ["H", "D", "S", "C"]
-    NUMBERS = ["A", ('2'..'9').to_a, "T", "J", "Q", "K"].flatten
+  SUITS = ["H", "D", "S", "C"]
+  NUMBERS = ["A", ('2'..'9').to_a, "T", "J", "Q", "K"].flatten
+
+  attr_reader :deck, :suits, :numbers
+  
   def initialize
     @deck = []
   end
 
-  attr_reader :deck, :suits, :numbers
 
   def populate_deck
     make_decks
