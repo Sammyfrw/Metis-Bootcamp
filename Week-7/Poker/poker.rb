@@ -34,8 +34,7 @@ class Poker
   def print_hands
     player_hands.each_with_index do |hands, index|
       hands_message = "Player #{index + 1} : "
-      puts hands_message
-      puts "-" * hands_message.length
+      puts hands_message + "\n" + ("-" * hands_message.length)
       puts hands
     end
   end

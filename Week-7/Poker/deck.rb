@@ -12,7 +12,7 @@ class Deck
   end
 
   def shift(num)
-    deck.shift(num)
+    @deck.shift(num)
   end
   
   private
@@ -26,7 +26,7 @@ class Deck
   end
 
   def shuffle_deck
-    deck.shuffle!
+    @deck.shuffle!
   end
 
 end
