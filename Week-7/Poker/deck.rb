@@ -6,16 +6,16 @@ class Deck
     @deck = populate_deck
   end
 
-  def populate_deck
-    make_decks
-    shuffle_deck
-  end
-
   def shift(num)
     @deck.shift(num)
   end
   
   private
+
+  def populate_deck
+    make_decks
+    shuffle_deck
+  end
 
   def make_decks
     SUITS.each do |suit| 
