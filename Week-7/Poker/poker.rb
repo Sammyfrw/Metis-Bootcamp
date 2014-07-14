@@ -2,6 +2,7 @@ require "./deck"
 
 class Poker
   MAX_PLAYERS = 10
+  MAX_CARDS_PER_HAND = 5
 
   attr_reader :deck, :players, :player_hands
 
@@ -20,18 +21,18 @@ class Poker
     end
   end
 
-
   private 
 
   def distribute_cards
     deck = Deck.new
-    player_hands.map! {deck.shift(5)} 
+    player_hands.map! { deck.shift(MAX_CARDS_PER_HAND) } 
   end
 
   def print_hands
     player_hands.each_with_index do |hands, index|
       hands_message = "Player #{index + 1} : "
-      puts hands_message + "\n" (+"-" * hands_message.length)
+      divider = "-" * hands_message.length
+      puts hands_message + "\n" + divider
       puts hands
     end
   end
