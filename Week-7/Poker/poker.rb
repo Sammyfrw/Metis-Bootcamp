@@ -25,7 +25,7 @@ class Poker
 
   def distribute_cards
     deck = Deck.new
-    player_hands.map! {deck,shift(5)} 
+    player_hands.map! {deck.shift(5)} 
   end
 
   def print_hands
