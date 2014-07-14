@@ -1,13 +1,15 @@
 require "./deck"
 
 class Poker
-  def initialize(players)
-    @players = players
+  MAX_PLAYERS = 10
+
+  def initialize(number_of_players)
+    @players = number_of_players
     @player_hands = @players.times.map { [] }
   end
 
   def play_game
-    if players < 10
+    if players < MAX_PLAYERS
       distribute_cards
       print_hands
       # display_winner
@@ -30,13 +32,15 @@ class Poker
 
   def print_hands
     player_hands.each_with_index do |hands, index|
-        puts "Player #{index+1}:"
-        puts "----------"
-        puts hands[index]
+        hands_message = "Player #{index+1} : "
+        puts hands_message
+        puts "-" * hands_message.length
+        puts hands
     end
   end
 
-  def display_winner
+  def display_best_hands(hands)
+    
   end
 end
 
