@@ -7,11 +7,9 @@ class Deck
 
   attr_reader :deck, :suits, :numbers
 
-  def new_deck
+  def poulate_deck
     make_decks
-    add_numbers
     shuffle_deck
-    return deck
   end
 
   def shift(num)
@@ -21,8 +19,7 @@ class Deck
   private
 
   def make_decks
-    deck = add_numbers
-    deck.flatten
+    deck = add_numbers.flatten
   end
 
   def add_numbers

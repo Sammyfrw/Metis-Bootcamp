@@ -3,7 +3,7 @@ require "./deck"
 class Poker
   def initialize(players)
     @players = players
-    @player_hands = [[]] * @players
+    @player_hands = @players.times.map { [] }
   end
 
   def play_game
@@ -12,19 +12,17 @@ class Poker
       print_hands
       # display_winner
     else
-      print "Too many players. Unable to start game."
+      puts "Too many players. Unable to start game."
     end
   end
 
   attr_reader :deck, :players, :player_hands
 
-  private
-
- 
+  private 
 
   def distribute_cards
     deck = Deck.new
-    deck.new_deck
+    deck.populate_deck
     player_hands.map do |hand|
       hand << deck.shift(5)
     end
