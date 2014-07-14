@@ -3,7 +3,7 @@ class Deck
   NUMBERS = ["A", ('2'..'9').to_a, "T", "J", "Q", "K"].flatten
 
   def initialize
-    @deck = []
+    @deck = populate_deck
   end
 
   def populate_deck

@@ -25,16 +25,13 @@ class Poker
 
   def distribute_cards
     deck = Deck.new
-    deck.populate_deck
-    player_hands.map do |hand|
-      hand << deck.shift(5)
-    end
+    player_hands.map! {deck,shift(5)} 
   end
 
   def print_hands
     player_hands.each_with_index do |hands, index|
       hands_message = "Player #{index + 1} : "
-      puts hands_message + "\n" + ("-" * hands_message.length)
+      puts hands_message + "\n" (+"-" * hands_message.length)
       puts hands
     end
   end
