@@ -12,7 +12,7 @@ class Poker
   end
 
   def play_game
-    if players < MAX_PLAYERS
+    if players <= MAX_PLAYERS
       distribute_cards
       print_hands
       # display_winner
