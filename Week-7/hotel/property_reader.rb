@@ -2,12 +2,11 @@ require "csv"
 require "./property"
 
 class PropertyReader
-
   attr_reader :properties
 
   def initialize(filename)
-      @file = filename
-      @properties = []
+   @file = filename
+   @properties = []
   end
 
   def read_file

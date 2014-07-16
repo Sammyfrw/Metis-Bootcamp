@@ -4,10 +4,12 @@ require "./property_reader"
 class PropertyQuery
   def initialize(properties)
     @properties = properties
+    @property = ""
   end
 
   def new_query
     query_for_property
+    show_query_results
   end
 
   private
@@ -19,7 +21,10 @@ class PropertyQuery
   end
 
   def find_result(query)
-    property = @properties.detect {|property| property.name == query} || property = NullProperty.new
+    @property = @properties.detect {|property| property.name == query} || NullProperty.new
+  end
+  
+  def show_query_results
     property.display
     query_for_property
   end
