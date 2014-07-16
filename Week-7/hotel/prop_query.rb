@@ -1,24 +1,17 @@
 require 'csv'
-require "./hotel"
+require "./property"
 
-class PropQuery
+class PropertyQuery
   def initialize
-    @property_database = {}
-  end
-
-  def run_app
-    read_file
-    construct_database
-    prompt_for_property
   end
 
   def read_file(filename)
-    CSV.foreach(filename, :headers => true, :converters => :all) do |row|
-      property = Hotel.new(row)
-      puts property.hotel
+    CSV.foreach(filename, headers: :true) do |row|
+      property = Property.new(row)
+      puts property.name
     end
   end
 end
 
-hotel = PropQuery.new
-hotel.read_file('./hotels.csv')
+property_query = PropertyQuery.new
+property_query.read_file('./hotels.csv')

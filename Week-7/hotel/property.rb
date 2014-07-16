@@ -1,9 +1,9 @@
-class Hotel
+class Property
   def initialize(details)
     @property_details = details
   end
 
-  def hotel
+  def name
     @property_details["Hotel"]
   end
 
