@@ -1,5 +1,6 @@
 require "csv"
 require "./property"
+require "./null_property"
 
 class PropertyQuery
   def initialize(filename)
@@ -7,7 +8,7 @@ class PropertyQuery
     @properties = []
   end
 
-  def run_query_app
+  def new_query
     read_file
     query_for_property
   end
@@ -27,11 +28,12 @@ class PropertyQuery
   end
 
   def find_result(query)
-    property = @properties.detect {|property| property.name == query}
+    property = @properties.detect {|property| property.name == query} || property = NullProperty.new
     property.display_result
+    query_for_property
   end
 end
 
 
 property_query = PropertyQuery.new('./hotels.csv')
-property_query.run_query_app
+property_query.new_query
