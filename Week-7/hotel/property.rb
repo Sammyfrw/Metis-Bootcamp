@@ -18,4 +18,11 @@ class Property
   def rooms
     @property_details["Number of Singles"] + @property_details["Number of Doubles"]
   end
+
+  def display_result
+    puts "Name: #{name}"
+    puts "Phone Number: #{phone}"
+    puts "Location: #{city}"
+    puts "Number of rooms: #{rooms}"
+  end
 end

@@ -23,14 +23,15 @@ class PropertyQuery
   def query_for_property
     print "Please input the hotel name that you wish details for. > "
     query = gets.chomp
-    property = @properties.detect {|property| property.name == query}
-    show_result(property)
+    find_result(query)
   end
 
-  def show_result(property)
-    puts property.name
+  def find_result(query)
+    property = @properties.detect {|property| property.name == query}
+    property.display_result
   end
 end
+
 
 property_query = PropertyQuery.new('./hotels.csv')
 property_query.run_query_app
