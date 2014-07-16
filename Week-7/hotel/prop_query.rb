@@ -23,12 +23,12 @@ class PropertyQuery
   def query_for_property
     print "Please input the hotel name that you wish details for. > "
     query = gets.chomp
-    property = @property.detect {|property| property.name == query}
+    property = @properties.detect {|property| property.name == query}
     show_result(property)
   end
 
   def show_result(property)
-    puts query_result.name
+    puts property.name
   end
 end
 
