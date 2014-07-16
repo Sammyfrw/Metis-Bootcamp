@@ -1,6 +1,3 @@
-require "./outcome"
-
-
 class Choice
   CHOICES = ["P", "R", "S"]
 

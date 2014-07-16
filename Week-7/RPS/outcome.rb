@@ -9,7 +9,9 @@ class Outcome
 
   def check_outcome
     if win?
+      declare_winner("Player", "AI")
     elsif lose?
+      declare_winner("AI", "Player")
     else
       draw_game
     end   
@@ -18,18 +20,11 @@ class Outcome
   private
   
   def win?
-    if WIN_CASES.include?(@outcome)
-      declare_winner("Player", "AI")
-      # game.wins += 1
-      # game.games_played += game.games_played+1
-    end
+    WIN_CASES.include?(@outcome)
   end
 
   def lose?
-    if LOSE_CASES.include?(@outcome)
-      declare_winner("AI", "Player")
-      # game.games_played += 1
-    end
+    LOSE_CASES.include?(@outcome)
   end
 
   def draw_game
