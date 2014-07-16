@@ -1,25 +1,16 @@
-require "csv"
-require "./property"
 require "./null_property"
+require "./property_reader"
 
 class PropertyQuery
-  def initialize(filename)
-    @file = filename
-    @properties = []
+  def initialize(properties)
+    @properties = properties
   end
 
   def new_query
-    read_file
     query_for_property
   end
 
   private
-
-  def read_file
-    CSV.foreach(@file, headers: :true) do |row|
-      @properties << Property.new(row)
-    end
-  end
 
   def query_for_property
     print "Please input the hotel name that you wish details for. > "
@@ -29,11 +20,12 @@ class PropertyQuery
 
   def find_result(query)
     property = @properties.detect {|property| property.name == query} || property = NullProperty.new
-    property.display_result
+    property.display
     query_for_property
   end
 end
 
-
-property_query = PropertyQuery.new('./hotels.csv')
+property_reader = PropertyReader.new('./hotels.csv')
+property_reader.read_file
+property_query = PropertyQuery.new(property_reader.properties)
 property_query.new_query

@@ -19,7 +19,7 @@ class Property
     @property_details["Number of Singles"] + @property_details["Number of Doubles"]
   end
 
-  def display_result
+  def display
     puts "Name: #{name}"
     puts "Phone Number: #{phone}"
     puts "Location: #{city}"
