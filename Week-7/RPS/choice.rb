@@ -1,10 +1,10 @@
 class Choice
   CHOICES = ["P", "R", "S"]
+  QUIT_CHOICE = ["Q"]
 
   def initialize
     @player_choice = ""
     @ai_choice = ""
-    set_up_choices
   end
 
   def set_up_choices
@@ -28,9 +28,8 @@ class Choice
   end
 
   def validate_choice
-    if is_choice_valid?
-    elsif is_player_quitting?
-    else
+    quit_game_if_player_wants_to!
+    if !is_choice_valid?
       puts "That's not a valid choice!"
     end
   end
@@ -39,11 +38,15 @@ class Choice
     CHOICES.include?(@player_choice)
   end
 
-  def is_player_quitting?
-    if @player_choice == "Q"
+  def quit_game_if_player_wants_to!
+    if is_player_quiting?
       puts "Ending game, see you next time!"
       exit
     end
+  end 
+
+  def is_player_quitting?
+    @player_choice == QUIT_CHOICE
   end
 
   def set_ai_choice

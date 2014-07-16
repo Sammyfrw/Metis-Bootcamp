@@ -23,10 +23,9 @@ class Game
 
   def run_game
     choice = Choice.new
-    # puts "Round over! You have won #{@wins} times out of #{@games_played} rounds!"
+    choice.set_up_choices
     run_game
   end
-
 end
 
 game = Game.new
