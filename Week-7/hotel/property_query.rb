@@ -3,8 +3,7 @@ require "./property_reader"
 
 class PropertyQuery
   def initialize(properties)
-    @properties = properties
-    @property = ""
+    @properties = properties  
   end
 
   def ask_user_for_query

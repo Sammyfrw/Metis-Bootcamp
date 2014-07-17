@@ -1,0 +1,42 @@
+Performance
+
+When we use user.greetings, we run greeting.sender and greeting.receiver (and
+other has_many features paired with render) through the partial automatically.
+
+user.greetings runs the SQL query: Select * FROM greetings where sender_id=3, once
+
+greeting.sender runs query SELECT * FROM users WHERE id=<greeting.sender_id>, for the number of greetings that exist
+greeting.receiver runs query SELECT * FROM users WHERE id=<greeting.receiver_id> for the number of greetings.
+
+This makes a TON of queries with big databases. N+1 queries in total.
+
+Rails can handle this performance issue for us:
+
+There is a SQL query we can attach: SELECT * FROM users WHERE id IN <range>. With this, we don't need to hit the DB.
+
+
+We need to add a new gem, Bullet, along with it's assorted configurations to
+raise a jscript browser notification when it finds that your code is adding a
+lot of items from the database in queries. We can put in additional details into our controller:
+
+def index
+	@greeting = Greeting.new
+	@greetings = Greeting.addressed_to(current_user).includes?(:sender)
+end
+
+
+Sending emails are slow. Via Heroku:
+
+User ->0.5s request -> Heroku ->0.7s request-> Email Server ->o.7s response-> Heroku ->0.5s response-> user
+
+The issue is, the user gets no response for the entire cycle until it comes
+back. So, there should be a way to separate and chop up the process and get
+the response back to the user as fast as possible. There is a way to chop up
+the process between heroku by segregating and delaying it till later; and the
+user can quickly receive a response and know that the email will be sent/has
+been sent.
+
+This is done by using the job queue. It sets up the queue nicely such that
+it'll delay jobs one at a time. By default, Heroku will also kill any process
+that takes 30s long. So usually if there is a process that takes that long it
+should be fixed, if not put in the background job queue.	
