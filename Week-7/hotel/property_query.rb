@@ -7,7 +7,7 @@ class PropertyQuery
     @property = ""
   end
 
-  def new_query
+  def ask_user_for_query
     loop do 
       property = query_for_property
       property.display
@@ -30,4 +30,4 @@ end
 property_reader = PropertyReader.new('./hotels.csv')
 property_reader.read_file
 property_query = PropertyQuery.new(property_reader.properties)
-property_query.new_query
+property_query.ask_user_for_query
