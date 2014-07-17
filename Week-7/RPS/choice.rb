@@ -28,7 +28,7 @@ end
   end
 
   def validate_choice
-    quit_game_if_player_wants_to!
+    quit_game_if_player_wants_to
     if invalid_choice?
       puts "That's not a valid choice!"
     end
@@ -38,7 +38,7 @@ end
     !CHOICES.include?(@player_choice)
   end
 
-  def quit_game_if_player_wants_to!
+  def quit_game_if_player_wants_to
     if player_is_quitting?
       puts "Ending game, see you next time!"
       exit
