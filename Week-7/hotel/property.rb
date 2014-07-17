@@ -24,5 +24,6 @@ class Property
     puts "Phone Number: #{phone}"
     puts "Location: #{city}"
     puts "Number of rooms: #{rooms}"
+    puts 
   end
 end

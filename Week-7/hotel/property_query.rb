@@ -27,7 +27,7 @@ class PropertyQuery
   end
   
   def show_query_results
-    property.display
+    @property.display
   end
 end
 
