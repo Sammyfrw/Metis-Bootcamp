@@ -8,8 +8,10 @@ class PropertyQuery
   end
 
   def new_query
-    query_for_property
-    show_query_results
+    loop do 
+      query_for_property
+      show_query_results
+    end
   end
 
   private
@@ -26,7 +28,6 @@ class PropertyQuery
   
   def show_query_results
     property.display
-    query_for_property
   end
 end
 
