@@ -1,6 +1,6 @@
 class Choice
-  CHOICES = ["P", "R", "S"]
-  QUIT_CHOICE = ["Q"]
+  CHOICES = %w(P R S)
+  QUIT_CHOICE = "Q"
 
   def initialize
     @player_choice = ""
@@ -39,7 +39,7 @@ class Choice
   end
 
   def quit_game_if_player_wants_to!
-    if is_player_quiting?
+    if is_player_quitting?
       puts "Ending game, see you next time!"
       exit
     end
