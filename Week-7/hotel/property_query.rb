@@ -9,8 +9,8 @@ class PropertyQuery
 
   def new_query
     loop do 
-      query_for_property
-      show_query_results
+      property = query_for_property
+      property.display
     end
   end
 
@@ -23,11 +23,7 @@ class PropertyQuery
   end
 
   def find_result(query)
-    @property = @properties.detect { |property| property.name == query } || NullProperty.new
-  end
-  
-  def show_query_results
-    @property.display
+    @properties.detect { |property| property.name == query } || NullProperty.new
   end
 end
 
@@ -35,8 +31,3 @@ property_reader = PropertyReader.new('./hotels.csv')
 property_reader.read_file
 property_query = PropertyQuery.new(property_reader.properties)
 property_query.new_query
-
-
-
-
-
