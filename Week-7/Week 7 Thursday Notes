@@ -39,4 +39,4 @@ been sent.
 This is done by using the job queue. It sets up the queue nicely such that
 it'll delay jobs one at a time. By default, Heroku will also kill any process
 that takes 30s long. So usually if there is a process that takes that long it
-should be fixed, if not put in the background job queue.
+should be fixed, if not put in the background job queue.	
