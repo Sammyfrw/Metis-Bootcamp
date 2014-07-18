@@ -17,11 +17,11 @@ class Choice
 
   def make_choice
     while invalid_choice?
-    prompt_entry
-    @player_choice = gets.chomp
-    validate_choice
+      prompt_entry
+      @player_choice = gets.chomp
+      validate_choice
+    end
   end
-end
 
   def prompt_entry
     print "Enter R/P/S to make a choice, or Q to quit. > "
